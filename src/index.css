@@ -1,1 +1,4 @@
 @import "tailwindcss";
+.bengali-font {
+  font-family: "Noto Serif Bengali", 'Courier New', Courier, monospace;
+}

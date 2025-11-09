@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { FileUpload } from "./FileUpload";
 import { useNavigate } from "react-router";
+import bgimg from "../assets/bg2.avif";
 // ==================== CUSTOM TIMER HOOK ====================
 const useTimer = (initialTime, onComplete) => {
   const [seconds, setSeconds] = useState(initialTime);
@@ -137,19 +138,26 @@ export const Test = ({ onNavigate }) => {
   const isLastQuestion = currentIndex === quizData.length - 1;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-      <div className="max-w-4xl mx-auto py-8">
+    <div className="relative min-h-screen bg-black p-4 overflow-hidden">
+      {/* Blurred background */}
+      <div
+        className="absolute inset-0 bg-cover bg-center blur-lg scale-105"
+        style={{
+          backgroundImage: `url(${bgimg})`,
+        }}
+      ></div>
+      <div className="max-w-4xl mx-auto py-8 backdrop-blur-3xl p-5">
         {/* Header */}
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex justify-between items-center mb-6 ">
           <button
             onClick={handleExit}
-            className="text-gray-600 hover:text-gray-800 font-semibold"
+            className="text-black hover:text-gray-800 font-semibold"
           >
             ← Change Quiz
           </button>
           <button
             onClick={() => setShowSettings(!showSettings)}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-800"
+            className="flex items-center gap-2 text-black hover:text-gray-800"
           >
             <Settings className="w-5 h-5" />
             Settings
@@ -162,7 +170,7 @@ export const Test = ({ onNavigate }) => {
             <h3 className="font-bold text-lg mb-4">Quiz Settings</h3>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-semibold text-black mb-2">
                   Timer Duration: {timerDuration}s
                 </label>
                 <input
@@ -199,7 +207,7 @@ export const Test = ({ onNavigate }) => {
 
         {/* Progress Bar */}
         <div className="mb-6">
-          <div className="flex justify-between text-sm text-gray-600 mb-2">
+          <div className="flex justify-between text-sm text-black mb-2">
             <span>
               Question {currentIndex + 1} of {quizData.length}
             </span>
@@ -209,7 +217,7 @@ export const Test = ({ onNavigate }) => {
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
             <div
-              className="bg-indigo-600 h-2 rounded-full transition-all"
+              className="bg-green-600 h-2 rounded-full transition-all"
               style={{
                 width: `${((currentIndex + 1) / quizData.length) * 100}%`,
               }}
@@ -218,12 +226,12 @@ export const Test = ({ onNavigate }) => {
         </div>
 
         {/* Timer + Controls */}
-        <div className="flex flex-row justify-between">
-          <div className="flex flex-wrap gap-3 justify-center h-16">
+        <div className="flex flex-row items-center justify-between bg-gradient-to-r from-slate-50 to-slate-100 rounded-2xl px-8 py-6 shadow-sm border border-slate-200">
+          <div className="flex items-center gap-3 w-1/5 ">
             {!isRunning && !showAnswer && (
               <button
                 onClick={start}
-                className="flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 font-semibold"
+                className="flex items-center gap-2 bg-green-500 text-black px-6 py-3  rounded-xl w-full hover:bg-emerald-700 transition-all duration-200 font-medium shadow-md hover:shadow-lg transform hover:scale-105"
               >
                 <Play className="w-5 h-5" />
                 Start Timer
@@ -232,7 +240,7 @@ export const Test = ({ onNavigate }) => {
             {isRunning && (
               <button
                 onClick={pause}
-                className="flex items-center gap-2 bg-yellow-600 text-white px-6 py-3 rounded-lg hover:bg-yellow-700 font-semibold"
+                className="flex w-full items-center gap-2 bg-amber-500 text-white px-6 py-3 rounded-xl hover:bg-amber-600 transition-all duration-200 font-medium shadow-md hover:shadow-lg transform hover:scale-105"
               >
                 <Pause className="w-5 h-5" />
                 Pause
@@ -241,7 +249,7 @@ export const Test = ({ onNavigate }) => {
             {showAnswer && !isLastQuestion && (
               <button
                 onClick={handleNext}
-                className="flex items-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 font-semibold"
+                className="flex items-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-xl hover:bg-indigo-700 transition-all duration-200 font-medium shadow-md hover:shadow-lg transform hover:scale-105"
               >
                 Next Question
                 <SkipForward className="w-5 h-5" />
@@ -250,62 +258,61 @@ export const Test = ({ onNavigate }) => {
             {showAnswer && isLastQuestion && (
               <button
                 onClick={handleRestart}
-                className="flex items-center gap-2 bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 font-semibold"
+                className="flex items-center gap-2 bg-purple-600 text-white px-6 py-3 rounded-xl hover:bg-purple-700 transition-all duration-200 font-medium shadow-md hover:shadow-lg transform hover:scale-105"
               >
                 <RotateCcw className="w-5 h-5" />
                 Restart Quiz
               </button>
             )}
           </div>
-
           {/* Timer */}
-          <div className="text-center mb-6">
+          <div className="flex flex-col items-center">
             <div
-              className={`text-6xl font-bold mb-2 ${
+              className={`text-6xl font-bold mb-1 transition-colors duration-300 ${
                 seconds / timerDuration > 0.5
-                  ? "text-green-600"
+                  ? "text-emerald-600"
                   : seconds / timerDuration > 0.25
-                  ? "text-yellow-600"
-                  : "text-red-600"
+                  ? "text-amber-500"
+                  : "text-rose-600"
               }`}
             >
               {seconds}s
             </div>
-            <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
+            <div className="flex items-center gap-2 text-sm text-slate-600 font-medium">
               {isRunning ? (
                 <>
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <span>Timer Running</span>
+                  <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+                  <span>Running</span>
                 </>
               ) : (
                 <>
-                  <div className="w-2 h-2 bg-gray-400 rounded-full" />
-                  <span>Timer Paused</span>
+                  <div className="w-2 h-2 bg-slate-400 rounded-full" />
+                  <span>Paused</span>
                 </>
               )}
             </div>
           </div>
-
           {/* Fullscreen Button */}
           <button
             onClick={enterFullScreen}
-            className="px-4 py-2 bg-indigo-600 text-white rounded-lg h-16 hover:bg-indigo-700"
+            className="flex items-center gap-2 px-6 py-3 bg-slate-700 text-white rounded-xl hover:bg-slate-800 transition-all duration-200 font-medium shadow-md hover:shadow-lg transform hover:scale-105"
           >
-            Go Fullscreen
+            {/* <Maximize className="w-5 h-5" /> */}
+            Fullscreen
           </button>
         </div>
 
         {/* Question */}
-        <div className="bg-white rounded-xl shadow-lg p-8 mb-6">
+        <div className=" bg-gray-400 rounded-xl shadow-black border border-black p-8 mb-6">
           <div className="mb-6">
-            <span className="inline-block bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-semibold mb-4">
+            <span className="inline-block  bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-semibold mb-4">
               Question #{currentQuestion.no}
             </span>
-            <h2 className="text-2xl font-bold text-gray-800 leading-relaxed">
+            <h2 className="text-2xl font-bold text-black leading-relaxed bengali-font">
               {currentQuestion.question}
             </h2>
           </div>
-          <div className="space-y-3">
+          <div className="space-y-3 bengali-font">
             {["a", "b", "c", "d"].map((opt) => {
               const isCorrect = currentQuestion.correct.toLowerCase() === opt;
               const showCorrect = showAnswer && isCorrect;

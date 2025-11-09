@@ -1,10 +1,11 @@
 // ==================== QUIZ PREPARE PAGE ====================
 import React, { useState, useEffect, useCallback } from 'react';
 import { Upload, Play, Pause, SkipForward, RotateCcw, Settings, PlusCircle, Edit2, Trash2, Download, Copy, FileUp, Home, BookOpen, Presentation } from 'lucide-react';
-
+import { useNavigate } from 'react-router';
 
 
 export const QuizPrepare = ({ onNavigate }) => {
+  const navigate = useNavigate();
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState({
     no: 1,
@@ -135,7 +136,7 @@ export const QuizPrepare = ({ onNavigate }) => {
       <div className="bg-white shadow-md sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <button onClick={() => onNavigate('home')} className="flex items-center gap-2 text-gray-600 hover:text-gray-800 font-semibold">
+            <button onClick={() => navigate('/')} className="flex items-center gap-2 text-gray-600 hover:text-gray-800 font-semibold">
               <Home className="w-5 h-5" />Home
             </button>
             <h1 className="text-2xl font-bold text-gray-800">Prepare Quiz</h1>

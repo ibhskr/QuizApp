@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Upload, Play, Pause, SkipForward, RotateCcw, Settings, PlusCircle, Edit2, Trash2, Download, Copy, FileUp, Home, BookOpen, Presentation } from 'lucide-react';
-
+import { useNavigate } from 'react-router';
 
 export const FileUpload = ({ onFileLoad, onNavigate }) => {
   const [isDragging, setIsDragging] = useState(false);
-
+const navigate = useNavigate();
   const handleFile = (file) => {
     if (file && file.type === 'application/json') {
       const reader = new FileReader();
@@ -29,7 +29,7 @@ export const FileUpload = ({ onFileLoad, onNavigate }) => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
       <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full">
-        <button onClick={() => onNavigate('home')} className="mb-6 flex items-center gap-2 text-gray-600 hover:text-gray-800 font-semibold">
+        <button onClick={() => navigate('/')} className="mb-6 flex items-center gap-2 text-gray-600 hover:text-gray-800 font-semibold">
           <Home className="w-5 h-5" />Home
         </button>
         <div className="text-center mb-8">
@@ -44,7 +44,7 @@ export const FileUpload = ({ onFileLoad, onNavigate }) => {
           <label htmlFor="file-upload" className="cursor-pointer">
             <div className="text-gray-600 mb-4">
               <p className="font-semibold mb-2">Drop your JSON file here</p>
-              <p className="text-sm">or click to browse</p>
+              <p className="text-sm text-indigo-600">or click to browse</p>
             </div>
             <button className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">Choose File</button>
           </label>
