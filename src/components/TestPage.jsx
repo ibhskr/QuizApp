@@ -267,17 +267,7 @@ export const Test = ({ onNavigate }) => {
           </div>
           {/* Timer */}
           <div className="flex flex-col items-center">
-            <div
-              className={`text-6xl font-bold mb-1 transition-colors duration-300 ${
-                seconds / timerDuration > 0.5
-                  ? "text-emerald-600"
-                  : seconds / timerDuration > 0.25
-                  ? "text-amber-500"
-                  : "text-rose-600"
-              }`}
-            >
-              {seconds}s
-            </div>
+            <div className="text-6xl font-bold mb-1 text-black">{seconds}s</div>
             <div className="flex items-center gap-2 text-sm text-slate-600 font-medium">
               {isRunning ? (
                 <>
