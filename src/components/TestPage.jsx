@@ -308,11 +308,11 @@ export const Test = ({ onNavigate }) => {
             <span className="inline-block  bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-semibold mb-4">
               Question #{currentQuestion.no}
             </span>
-            <h2 className="text-2xl font-bold text-black leading-relaxed bengali-font">
+            <h2 className="text-3xl font-bold text-black leading-relaxed bengali-font">
               {currentQuestion.question}
             </h2>
           </div>
-          <div className="space-y-3 bengali-font">
+          <div className="space-y-3 bengali-font text-2xl text-black">
             {["a", "b", "c", "d"].map((opt) => {
               const isCorrect = currentQuestion.correct.toLowerCase() === opt;
               const showCorrect = showAnswer && isCorrect;
@@ -321,7 +321,7 @@ export const Test = ({ onNavigate }) => {
                   key={opt}
                   className={`p-4 rounded-lg border-2 transition-all ${
                     showCorrect
-                      ? "border-green-500 bg-green-50"
+                      ? "border-green-500 bg-green-200 font-bold"
                       : "border-gray-200 bg-gray-50"
                   }`}
                 >
@@ -330,7 +330,7 @@ export const Test = ({ onNavigate }) => {
                       className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold ${
                         showCorrect
                           ? "bg-green-500 text-white"
-                          : "bg-gray-300 text-gray-700"
+                          : "bg-gray-300 text-black"
                       }`}
                     >
                       {opt.toUpperCase()}
@@ -344,7 +344,7 @@ export const Test = ({ onNavigate }) => {
             })}
           </div>
           {showAnswer && currentQuestion.explanation && (
-            <div className="mt-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded">
+            <div className="mt-6 p-4  bg-blue-50 border-l-4 border-blue-500 rounded">
               <p className="font-semibold text-blue-900 mb-1">Explanation:</p>
               <p className="text-blue-800">{currentQuestion.explanation}</p>
             </div>
