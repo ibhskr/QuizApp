@@ -15,6 +15,7 @@ import {
   Home,
   BookOpen,
   Presentation,
+  Timer,
 } from "lucide-react";
 import { useNavigate } from "react-router";
 
@@ -22,9 +23,10 @@ const App = () => {
   const navigate = useNavigate();
 
   return (
-    <div className=" h-screen border border-b-black">
-      <div className="w-screen h-full flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 overflow-hidden ">
+    <div className="h-screen border border-b-black">
+      <div className="w-screen h-full flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 overflow-hidden">
         <div className="max-w-5xl w-full px-4">
+          {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-5xl font-bold text-gray-800 mb-4">
               Live Teaching Quiz App
@@ -34,7 +36,8 @@ const App = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          {/* Cards */}
+          <div className="grid md:grid-cols-3 gap-8">
             {/* Prepare Quiz Card */}
             <div
               onClick={() => navigate("/quiz-prepare")}
@@ -72,6 +75,26 @@ const App = () => {
               </p>
               <div className="flex items-center text-green-600 font-semibold">
                 Start Quiz <span className="ml-2">→</span>
+              </div>
+            </div>
+
+            {/* Automated Test Card */}
+            <div
+              onClick={() => navigate("/auto-test")}
+              className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all cursor-pointer transform hover:scale-105"
+            >
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-purple-100 rounded-full mb-6">
+                <Timer className="w-8 h-8 text-purple-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-800 mb-3">
+                Automated Test
+              </h2>
+              <p className="text-gray-600 mb-6">
+                Experience auto-timed quiz mode — answers reveal automatically,
+                and the next question appears after 3 seconds.
+              </p>
+              <div className="flex items-center text-purple-600 font-semibold">
+                Try Auto Mode <span className="ml-2">→</span>
               </div>
             </div>
           </div>

@@ -9,6 +9,7 @@ import { Test } from "./components/TestPage.jsx";
 import { CompletedPage } from "./components/CompletedPage.jsx";
 
 import Homexx from "./Home.jsx";
+import { AutoTest } from "./components/AutoTestPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,13 +25,16 @@ const router = createBrowserRouter([
     element: <Test />,
   },
   {
-    path:"/finished",
-    element:<CompletedPage/>
-  }
+    path: "/auto-test",
+    element: <AutoTest />,
+  },
+  {
+    path: "/finished",
+    element: <CompletedPage />,
+  },
 ]);
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-   
     <RouterProvider router={router} />,
   </StrictMode>
 );
